@@ -1,0 +1,77 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model Contacto {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  apellido  String
+  edad      Int
+  telefono  Int
+  relacion  String
+  usuarioId Int?
+  usuario   Usuario? @relation(fields: [usuarioId], references: [id])
+}
+model Usuario {
+  id             Int              @id @default(autoincrement())
+  nombre         String           @db.VarChar(255)
+  apellido       String
+  edad           Int
+  telefono       Int
+  carnet         Int
+  correo         String
+  password       String
+  rol            String
+  genero         String
+  Organizacion   Organizacion[]
+  AlertasUsuario AlertasUsuario[]
+  contactos      Contacto[]
+}
+
+model ResultadoCuestionario {
+  id         Int  @id @default(autoincrement())
+  puntuacion Int
+  respuestas Json
+}
+
+model Organizacion {
+  id            Int      @id @default(autoincrement())
+  nombre        String
+  ubicacion     String
+  ubicacionData String
+  areVulnerable String
+  usuarioId     Int?
+  usuario       Usuario? @relation(fields: [usuarioId], references: [id])
+}
+
+model Ubicacion {
+  id             Int              @id @default(autoincrement())
+  longitud       Float
+  latitud        Float
+  AlertasUsuario AlertasUsuario[]
+}
+
+model Multimedia {
+  id             Int              @id @default(autoincrement())
+  foto           String
+  AlertasUsuario AlertasUsuario[]
+}
+
+model AlertasUsuario {
+  id           Int         @id @default(autoincrement())
+  usuarioId    Int?
+  ubicacionId  Int?
+  multimediaId Int?
+  audio        String?
+  fecha        DateTime    @default(now())
+  estado       Boolean     @default(false)
+  usuario      Usuario?    @relation(fields: [usuarioId], references: [id])
+  ubicacion    Ubicacion?  @relation(fields: [ubicacionId], references: [id])
+  multimedia   Multimedia? @relation(fields: [multimediaId], references: [id])
+}
