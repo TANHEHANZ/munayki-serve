@@ -32,6 +32,8 @@ CREATE TABLE "ResultadoCuestionario" (
     "id" SERIAL NOT NULL,
     "puntuacion" INTEGER NOT NULL,
     "respuestas" JSONB NOT NULL,
+    "usuarioId" INTEGER,
+    "usuarioNombre" TEXT NOT NULL DEFAULT 'Anónimo',
 
     CONSTRAINT "ResultadoCuestionario_pkey" PRIMARY KEY ("id")
 );
@@ -80,6 +82,9 @@ CREATE TABLE "AlertasUsuario" (
 
 -- AddForeignKey
 ALTER TABLE "Contacto" ADD CONSTRAINT "Contacto_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "Usuario"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ResultadoCuestionario" ADD CONSTRAINT "ResultadoCuestionario_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "Usuario"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Organizacion" ADD CONSTRAINT "Organizacion_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "Usuario"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,26 +17,31 @@ model Contacto {
   usuarioId Int?
   usuario   Usuario? @relation(fields: [usuarioId], references: [id])
 }
+
 model Usuario {
-  id             Int              @id @default(autoincrement())
-  nombre         String           @db.VarChar(255)
-  apellido       String
-  edad           Int
-  telefono       Int
-  carnet         Int
-  correo         String
-  password       String
-  rol            String
-  genero         String
-  Organizacion   Organizacion[]
-  AlertasUsuario AlertasUsuario[]
-  contactos      Contacto[]
+  id                    Int                     @id @default(autoincrement())
+  nombre                String                  @db.VarChar(255)
+  apellido              String
+  edad                  Int
+  telefono              Int
+  carnet                Int
+  correo                String
+  password              String
+  rol                   String
+  genero                String
+  Organizacion          Organizacion[]
+  AlertasUsuario        AlertasUsuario[]
+  contactos             Contacto[]
+  ResultadoCuestionario ResultadoCuestionario[]
 }
 
 model ResultadoCuestionario {
-  id         Int  @id @default(autoincrement())
-  puntuacion Int
-  respuestas Json
+  id            Int      @id @default(autoincrement())
+  puntuacion    Int
+  respuestas    Json
+  usuarioId     Int?
+  usuarioNombre String   @default("Anónimo")
+  usuario       Usuario? @relation(fields: [usuarioId], references: [id])
 }
 
 model Organizacion {
