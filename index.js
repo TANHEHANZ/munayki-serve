@@ -29,6 +29,7 @@ app.use(multimedia);
 app.use(alertaUsuario);
 app.use(usuario);
 app.use(login);
+app.use(resultadosCuestionario);
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
