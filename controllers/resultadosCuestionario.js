@@ -24,7 +24,8 @@ app.post("/resultadosCuestionario", async (req, res) => {
       data: {
         puntuacion,
         respuestas,
-        usuarioNombre: usuarioNombre || "Anónimo", 
+        usuarioId,
+        usuarioNombre: usuarioNombre || "Anónimo",
       },
     });
 
