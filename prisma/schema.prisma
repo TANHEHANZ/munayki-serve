@@ -48,7 +48,6 @@ model Organizacion {
   id            Int      @id @default(autoincrement())
   nombre        String
   ubicacion     String
-  ubicacionData String
   areVulnerable String
   usuarioId     Int?
   usuario       Usuario? @relation(fields: [usuarioId], references: [id])
