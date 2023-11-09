@@ -17,8 +17,6 @@ app.post("/organizacion", async (req, res) => {
       nombre: req.body.nombre,
       areVulnerable: req.body.areVulnerable,
       ubicacion: req.body.ubicacion,
-      ubicacionData: req.body.ubicacionData,
-      usuarioId: req.body.usuarioId,
     },
   });
   res.json({
@@ -36,8 +34,6 @@ app.put("/organizacion/:id", async (req, res) => {
       areVulnerable,
       nombre,
       ubicacion,
-      ubicacionData,
-      usuarioId,
     },
   });
   res.json(organizacionActualizada);
