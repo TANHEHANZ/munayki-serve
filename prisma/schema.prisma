@@ -33,6 +33,7 @@ model Usuario {
   AlertasUsuario        AlertasUsuario[]
   contactos             Contacto[]
   ResultadoCuestionario ResultadoCuestionario[]
+  multimedia            Multimedia[]
 }
 
 model ResultadoCuestionario {
@@ -58,11 +59,17 @@ model Ubicacion {
   longitud       Float
   latitud        Float
   AlertasUsuario AlertasUsuario[]
+  Multimedia     Multimedia[]
 }
 
 model Multimedia {
   id             Int              @id @default(autoincrement())
   foto           String
+  fecha          DateTime         @default(now())
+  usuarioId      Int
+  ubicacionId    Int
+  usuario        Usuario?         @relation(fields: [usuarioId], references: [id])
+  ubicacion      Ubicacion?       @relation(fields: [ubicacionId], references: [id])
   AlertasUsuario AlertasUsuario[]
 }
 
