@@ -40,7 +40,7 @@ app.get("/resultadosCuestionarioUsuario", async (req, res) => {
   try {
     const resultados = await prisma.resultadoCuestionario.findMany({
       select: {
-        puntuacion:true
+        puntuacion: true,
       },
     });
     res.json(resultados);
@@ -55,16 +55,9 @@ app.get("/resultadosCuestionarioUsuario", async (req, res) => {
   }
 });
 app.post("/resultadosCuestionario", async (req, res) => {
-  const { puntuacion, respuestas } = req.body;
-
   try {
     const resultado = await prisma.resultadoCuestionario.create({
-      data: {
-        puntuacion,
-        respuestas,
-        usuarioId,
-        usuarioNombre: usuarioNombre || "Anónimo",
-      },
+      data: req.body,
     });
 
     res.json(resultado);
