@@ -59,17 +59,18 @@ model Ubicacion {
   longitud       Float
   latitud        Float
   AlertasUsuario AlertasUsuario[]
-  Multimedia     Multimedia[]
 }
 
 model Multimedia {
   id             Int              @id @default(autoincrement())
   foto           String
+  audio          String
   fecha          DateTime         @default(now())
+  longitud       Float
+  latitud        Float
+  estado         Boolean          @default(false)
   usuarioId      Int
-  ubicacionId    Int
   usuario        Usuario?         @relation(fields: [usuarioId], references: [id])
-  ubicacion      Ubicacion?       @relation(fields: [ubicacionId], references: [id])
   AlertasUsuario AlertasUsuario[]
 }
 
