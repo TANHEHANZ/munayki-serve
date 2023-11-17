@@ -18,7 +18,42 @@ app.get("/resultadosCuestionario", async (req, res) => {
       );
   }
 });
-
+app.get("/resultadosCuestionarioUsuario", async (req, res) => {
+  try {
+    const resultados = await prisma.resultadoCuestionario.findMany({
+      select: {
+        usuarioNombre: true,
+      },
+    });
+    res.json(resultados);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json(
+        { error: "Error al obtener los resultados del cuestionario." },
+        error
+      );
+  }
+});
+app.get("/resultadosCuestionarioUsuario", async (req, res) => {
+  try {
+    const resultados = await prisma.resultadoCuestionario.findMany({
+      select: {
+        puntuacion:true
+      },
+    });
+    res.json(resultados);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json(
+        { error: "Error al obtener los resultados del cuestionario." },
+        error
+      );
+  }
+});
 app.post("/resultadosCuestionario", async (req, res) => {
   const { puntuacion, respuestas } = req.body;
 
@@ -27,7 +62,8 @@ app.post("/resultadosCuestionario", async (req, res) => {
       data: {
         puntuacion,
         respuestas,
-
+        usuarioId,
+        usuarioNombre: usuarioNombre || "Anónimo",
       },
     });
 
@@ -44,7 +80,7 @@ app.post("/resultadosCuestionario", async (req, res) => {
 //   const token = req.header("Authorization");
 
 //   try {
-//     let usuarioId = null; 
+//     let usuarioId = null;
 
 //     if (token) {
 //       const decodedToken = jwt.verify(token, "123");
