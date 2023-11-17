@@ -36,7 +36,7 @@ app.get("/resultadosCuestionarioUsuario", async (req, res) => {
       );
   }
 });
-app.get("/resultadosCuestionarioUsuario", async (req, res) => {
+app.get("/resultadosCuestionarioPuntuacion", async (req, res) => {
   try {
     const resultados = await prisma.resultadoCuestionario.findMany({
       select: {
