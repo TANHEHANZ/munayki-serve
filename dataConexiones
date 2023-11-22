@@ -1,0 +1,9 @@
+# DATABASE_URL="postgres://default:1q2gzklRVOCv@ep-raspy-tree-02428254.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+# DATABASE_URL="mysql://root:@localhost:3306/munaiky?schema=public"
+# DATABASE_URL="postgres://default:IvcSfb1XUR6t@ep-rough-union-98461653.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+# ---con este esta todo
+# para pruebas de la data 
+# psql "postgres://default:rRTLDNcf0zl9@ep-aged-mountain-08748091.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+DATABASE_URL="postgres://default:rRTLDNcf0zl9@ep-aged-mountain-08748091.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+# DATABASE_URL="postgres://default:z1KITFNDteu3@ep-raspy-tree-02428254.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+# -- este es delvercel pero ahy que redireccionar
