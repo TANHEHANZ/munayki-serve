@@ -11,12 +11,15 @@ app.get("/organizacion", async (req, res) => {
   });
   res.send(organizacion);
 });
+
 app.post("/organizacion", async (req, res) => {
+  const usuarioId = req.body.usuarioId;
   const organizacion = await prisma.organizacion.create({
     data: {
       nombre: req.body.nombre,
       areVulnerable: req.body.areVulnerable,
       ubicacion: req.body.ubicacion,
+      usuario: { connect: { id: usuarioId } },
     },
   });
   res.json({

@@ -30,7 +30,6 @@ model Usuario {
   rol                   String
   genero                String
   Organizacion          Organizacion[]
-  AlertasUsuario        AlertasUsuario[]
   contactos             Contacto[]
   ResultadoCuestionario ResultadoCuestionario[]
   multimedia            Multimedia[]
@@ -46,43 +45,39 @@ model ResultadoCuestionario {
 }
 
 model Organizacion {
-  id            Int      @id @default(autoincrement())
+  id            Int            @id @default(autoincrement())
   nombre        String
   ubicacion     String
   areVulnerable String
   usuarioId     Int?
-  usuario       Usuario? @relation(fields: [usuarioId], references: [id])
+  usuario       Usuario?       @relation(fields: [usuarioId], references: [id])
+  Modificacion  Modificacion[]
 }
 
 model Ubicacion {
-  id             Int              @id @default(autoincrement())
-  longitud       Float
-  latitud        Float
-  AlertasUsuario AlertasUsuario[]
+  id       Int   @id @default(autoincrement())
+  longitud Float
+  latitud  Float
 }
 
 model Multimedia {
-  id             Int              @id @default(autoincrement())
-  foto           String
-  audio          String
-  fecha          DateTime         @default(now())
-  longitud       Float
-  latitud        Float
-  estado         Boolean          @default(false)
-  usuarioId      Int
-  usuario        Usuario?         @relation(fields: [usuarioId], references: [id])
-  AlertasUsuario AlertasUsuario[]
+  id           Int            @id @default(autoincrement())
+  foto         String
+  audio        String
+  fecha        DateTime       @default(now())
+  longitud     Float
+  latitud      Float
+  estado       Boolean        @default(false)
+  usuarioId    Int
+  usuario      Usuario?       @relation(fields: [usuarioId], references: [id])
+  Modificacion Modificacion[]
 }
 
-model AlertasUsuario {
-  id           Int         @id @default(autoincrement())
-  usuarioId    Int?
-  ubicacionId  Int?
-  multimediaId Int?
-  audio        String?
-  fecha        DateTime    @default(now())
-  estado       Boolean     @default(false)
-  usuario      Usuario?    @relation(fields: [usuarioId], references: [id])
-  ubicacion    Ubicacion?  @relation(fields: [ubicacionId], references: [id])
-  multimedia   Multimedia? @relation(fields: [multimediaId], references: [id])
+model Modificacion {
+  id             Int           @id @default(autoincrement())
+  fecha          DateTime      @default(now())
+  organizacion   Organizacion? @relation(fields: [organizacionId], references: [id])
+  organizacionId Int?
+  multimedia     Multimedia?   @relation(fields: [multimediaId], references: [id])
+  multimediaId   Int?
 }
