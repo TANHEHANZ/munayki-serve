@@ -4,6 +4,9 @@
 # ---con este esta todo
 # para pruebas de la data 
 # psql "postgres://default:rRTLDNcf0zl9@ep-aged-mountain-08748091.us-east-1.postgres.vercel-storage.com:5432/verceldb"
-DATABASE_URL="postgres://default:rRTLDNcf0zl9@ep-aged-mountain-08748091.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+# DATABASE_URL="postgres://default:rRTLDNcf0zl9@ep-aged-mountain-08748091.us-east-1.postgres.vercel-storage.com:5432/verceldb"
 # DATABASE_URL="postgres://default:z1KITFNDteu3@ep-raspy-tree-02428254.us-east-1.postgres.vercel-storage.com:5432/verceldb"
 # -- este es delvercel pero ahy que redireccionar
+# psql "postgres://default:zx2AM5uvQGeF@ep-red-breeze-66713120.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+#  con la cuenta de la munaiky
+DATABASE_URL="postgres://default:zx2AM5uvQGeF@ep-red-breeze-66713120.us-east-1.postgres.vercel-storage.com:5432/verceldb"
