@@ -67,7 +67,7 @@ model Multimedia {
   fecha        DateTime       @default(now())
   longitud     Float
   latitud      Float
-  estado       Boolean        @default(false)
+  estado       String?        @default("false")
   usuarioId    Int
   usuario      Usuario?       @relation(fields: [usuarioId], references: [id])
   Modificacion Modificacion[]

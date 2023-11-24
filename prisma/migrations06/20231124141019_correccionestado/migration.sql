@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Multimedia" ALTER COLUMN "estado" DROP NOT NULL,
+ALTER COLUMN "estado" SET DEFAULT 'false',
+ALTER COLUMN "estado" SET DATA TYPE TEXT;
