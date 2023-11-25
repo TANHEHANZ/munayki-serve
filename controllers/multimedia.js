@@ -67,26 +67,33 @@ app.post("/Multimedia/:iduser", async (req, res) => {
   }
 });
 
-app.put("/multimedia", async (req, res) => {
+app.put("/multimedia/:id", async (req, res) => {
   const id = parseInt(req.params.id);
-  const multimedia = await prisma.multimedia.update({
-    where: {
-      id,
-    },
-    data: {
-      foto: foto,
-      audio: audio,
-      longitud: longitud,
-      latitud: latitud,
-      estado: estado,
-      fecha: fecha,
-      usuarioId: usuarioId,
-    },
-  });
-  res.json({
-    message: "Successully update",
-    data: multimedia,
-  });
+  const { foto, audio, longitud, latitud, estado, fecha, usuarioId } = req.body;
+
+  try {
+    const multimedia = await prisma.multimedia.update({
+      where: { id },
+      data: {
+        foto,
+        audio,
+        longitud,
+        latitud,
+        estado,
+        fecha,
+        usuarioId,
+      },
+    });
+
+    res.json({
+      message: "Successfully updated",
+      data: multimedia,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
 });
 
 app.delete("/multimedia/:id", async (req, res) => {

@@ -29,7 +29,6 @@ model Usuario {
   password              String
   rol                   String
   genero                String
-
   contactos             Contacto[]
   ResultadoCuestionario ResultadoCuestionario[]
   multimedia            Multimedia[]

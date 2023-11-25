@@ -3,12 +3,11 @@ const { PrismaClient } = require("@prisma/client");
 const app = express();
 const prisma = new PrismaClient();
 
-
 app.get("/modificacionuncluye", async (req, res) => {
   try {
     const modificaciones = await prisma.modificacion.findMany({
       include: {
-        organizacion: true,
+        usuario: true,
         multimedia: true,
       },
     });
@@ -23,12 +22,12 @@ app.get("/modificacionuncluye", async (req, res) => {
   }
 });
 
-app.get("/modificacion/:organizacionId/:multimediaId", async (req, res) => {
+app.get("/modificacion/:usuarioId/:multimediaId", async (req, res) => {
   try {
-    const { organizacionId, multimediaId } = req.params;
+    const { usuarioId, multimediaId } = req.params;
     const modificaciones = await prisma.modificacion.findMany({
       where: {
-        organizacionId: organizacionId ? parseInt(organizacionId) : undefined,
+        usuarioId: usuarioId ? parseInt(usuarioId) : undefined,
         multimediaId: multimediaId ? parseInt(multimediaId) : undefined,
       },
       include: {
@@ -46,14 +45,13 @@ app.get("/modificacion/:organizacionId/:multimediaId", async (req, res) => {
   }
 });
 
-
-app.post("/modificacion/:organizacionId/:multimediaId", async (req, res) => {
+app.post("/modificacion/:usuarioId/:multimediaId", async (req, res) => {
   try {
-    const { organizacionId, multimediaId } = req.params;
+    const { usuarioId, multimediaId } = req.params;
     const modificacion = await prisma.modificacion.create({
       data: {
         fecha: new Date(),
-        organizacionId: organizacionId ? parseInt(organizacionId) : undefined,
+        usuarioId: usuarioId ? parseInt(usuarioId) : undefined,
         multimediaId: multimediaId ? parseInt(multimediaId) : undefined,
       },
     });
