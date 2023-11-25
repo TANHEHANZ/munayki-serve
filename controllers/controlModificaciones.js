@@ -11,7 +11,6 @@ app.get("/modificacionuncluye", async (req, res) => {
         multimedia: true,
       },
     });
-
     res.json({
       message: "Successfully fetched",
       data: modificaciones,
@@ -34,7 +33,6 @@ app.get("/modificacion/:usuarioId/:multimediaId", async (req, res) => {
         usuario: true,
       },
     });
-
     res.json({
       message: "Successfully fetched",
       data: modificaciones,
@@ -55,7 +53,6 @@ app.post("/modificacion/:usuarioId/:multimediaId", async (req, res) => {
         multimediaId: multimediaId ? parseInt(multimediaId) : undefined,
       },
     });
-
     res.json({
       message: "Successfully created",
       data: modificacion,
@@ -65,5 +62,4 @@ app.post("/modificacion/:usuarioId/:multimediaId", async (req, res) => {
     res.status(500).json({ error: "Error al crear la modificación" });
   }
 });
-
 module.exports = app;

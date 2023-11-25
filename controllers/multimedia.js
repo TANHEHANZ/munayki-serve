@@ -94,7 +94,7 @@ app.put("/multimedia/:id", async (req, res) => {
       error: error.message,
     });
   }
-});
+}); 
 
 app.delete("/multimedia/:id", async (req, res) => {
   const id = parseInt(req.params.id);
