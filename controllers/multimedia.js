@@ -12,19 +12,6 @@ app.get("/multimedia", async (req, res) => {
   res.send(multimetida);
 });
 
-// app.post("/multimedia", async (req, res) => {
-//   const multimedia = await prisma.multimedia.create({
-//     data: {
-//       foto: req.body.foto,
-//       AlertasUsuario: req.body.AlertasUsuario,
-//     },
-//   });
-//   res.json({
-//     message: "successully created",
-//     data: multimedia,
-//   });
-// });
-
 app.post("/Multimedia", async (req, res) => {
   try {
     const multimedia = await prisma.multimedia.create({
@@ -76,9 +63,7 @@ app.post("/Multimedia/:iduser", async (req, res) => {
       data: multimedia,
     });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error al crear multimedia para el usuario" });
+    res.status(500).json({ error });
   }
 });
 

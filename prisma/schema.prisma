@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -29,10 +29,11 @@ model Usuario {
   password              String
   rol                   String
   genero                String
-  Organizacion          Organizacion[]
+
   contactos             Contacto[]
   ResultadoCuestionario ResultadoCuestionario[]
   multimedia            Multimedia[]
+   Modificacion  Modificacion[]
 }
 
 model ResultadoCuestionario {
@@ -49,9 +50,7 @@ model Organizacion {
   nombre        String
   ubicacion     String
   areVulnerable String
-  usuarioId     Int?
-  usuario       Usuario?       @relation(fields: [usuarioId], references: [id])
-  Modificacion  Modificacion[]
+ 
 }
 
 model Ubicacion {
@@ -76,8 +75,8 @@ model Multimedia {
 model Modificacion {
   id             Int           @id @default(autoincrement())
   fecha          DateTime      @default(now())
-  organizacion   Organizacion? @relation(fields: [organizacionId], references: [id])
-  organizacionId Int?
+  usuarioId     Int?
+  usuario       Usuario?       @relation(fields: [usuarioId], references: [id])
   multimedia     Multimedia?   @relation(fields: [multimediaId], references: [id])
   multimediaId   Int?
 }
