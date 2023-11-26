@@ -29,10 +29,13 @@ model Usuario {
   password              String
   rol                   String
   genero                String
+  nombreOrganizacion    String?
+  ubicacion             String?
+  areVulnerable         String?
   contactos             Contacto[]
   ResultadoCuestionario ResultadoCuestionario[]
   multimedia            Multimedia[]
-   Modificacion  Modificacion[]
+  Modificacion          Modificacion[]
 }
 
 model ResultadoCuestionario {
@@ -45,11 +48,10 @@ model ResultadoCuestionario {
 }
 
 model Organizacion {
-  id            Int            @id @default(autoincrement())
+  id            Int    @id @default(autoincrement())
   nombre        String
   ubicacion     String
   areVulnerable String
- 
 }
 
 model Ubicacion {
@@ -72,10 +74,10 @@ model Multimedia {
 }
 
 model Modificacion {
-  id             Int           @id @default(autoincrement())
-  fecha          DateTime      @default(now())
-  usuarioId     Int?
-  usuario       Usuario?       @relation(fields: [usuarioId], references: [id])
-  multimedia     Multimedia?   @relation(fields: [multimediaId], references: [id])
-  multimediaId   Int?
+  id           Int         @id @default(autoincrement())
+  fecha        DateTime    @default(now())
+  usuarioId    Int?
+  usuario      Usuario?    @relation(fields: [usuarioId], references: [id])
+  multimedia   Multimedia? @relation(fields: [multimediaId], references: [id])
+  multimediaId Int?
 }

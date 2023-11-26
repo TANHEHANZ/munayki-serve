@@ -16,19 +16,8 @@ app.get("/user", async (req, res) => {
 app.post("/user", async (req, res) => {
   try {
     const newuser = await prisma.usuario.create({
-      data: {
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        edad: req.body.edad,
-        telefono: req.body.telefono,
-        carnet: req.body.carnet,
-        correo: req.body.correo,
-        password: req.body.password,
-        rol: req.body.rol,
-        genero: req.body.genero,
-      },
+      data: req.body,
     });
-
     res.json({
       message: "sucessully create",
       data: newuser,
@@ -40,25 +29,13 @@ app.post("/user", async (req, res) => {
   }
 });
 app.put("/user/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-  const { nombre, apellido, edad, telefono, carnet, correo, password, rol } =
-    req.body; // Obtén los datos del cuerpo de la solicitud
-
+  const id = Number(req.params.id);
   try {
     const userUpdate = await prisma.usuario.update({
       where: {
         id,
       },
-      data: {
-        nombre,
-        apellido,
-        edad,
-        telefono,
-        carnet,
-        correo,
-        password,
-        rol,
-      },
+      data: req.body,
     });
 
     res.json({
