@@ -10,6 +10,7 @@ const alertaUsuario = require("./controllers/alertaUsuario");
 const resultadosCuestionario = require("./controllers/resultadosCuestionario");
 const contact = require("./controllers/contactos");
 const modificacion = require("./controllers/controlModificaciones");
+const alertssms = require("./controllers/alertasms");
 
 const app = express();
 const port = 3000;
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(contact);
 app.use(ubicacion);
+app.use(alertssms);
 app.use(organizacion);
 app.use(modificacion);
 app.use(multimedia);
