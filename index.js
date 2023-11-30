@@ -11,6 +11,7 @@ const resultadosCuestionario = require("./controllers/resultadosCuestionario");
 const contact = require("./controllers/contactos");
 const modificacion = require("./controllers/controlModificaciones");
 const alertssms = require("./controllers/alertasms");
+const informaciones = require("./controllers/informacion");
 
 const app = express();
 const port = 3000;
@@ -27,6 +28,7 @@ app.use(cors());
 app.use(contact);
 app.use(ubicacion);
 app.use(alertssms);
+app.use(informaciones);
 app.use(organizacion);
 app.use(modificacion);
 app.use(multimedia);

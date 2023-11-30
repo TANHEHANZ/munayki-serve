@@ -59,7 +59,7 @@ app.post("/user/:userId/contacts", async (req, res) => {
     const newContact = await prisma.contacto.create({
       data: {
         nombre: req.body.nombre,
-        apellido: req.body.apellido,
+        email: req.body.email,
         edad: req.body.edad,
         telefono: req.body.telefono,
         relacion: req.body.relacion,
@@ -95,7 +95,7 @@ app.put("/user/:userId/contacts/:contactId", async (req, res) => {
       where: { id: contactId },
       data: {
         nombre: req.body.nombre,
-        apellido: req.body.apellido,
+        email: req.body.email,
         edad: req.body.edad,
         telefono: req.body.telefono,
         relacion: req.body.relacion,
@@ -112,7 +112,6 @@ app.put("/user/:userId/contacts/:contactId", async (req, res) => {
     });
   }
 });
-
 
 app.delete("/user/:userId/contacts/:contactId", async (req, res) => {
   try {
