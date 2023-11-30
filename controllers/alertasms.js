@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const { Twilio } = require("twilio");
 const nodemailer = require("nodemailer");
 
+const clientqr = require("clientqr");
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -58,6 +60,16 @@ app.post("/send-email", (req, res) => {
       res.status(200).json({ message: "Correo enviado correctamente" });
     }
   });
+});
+
+app.get('/qr', async (req, res) => {
+  const isConnected = clientqr.ready;
+
+  if (isConnected) {
+      res.send('El cliente de WhatsApp está conectado');
+  } else {
+      res.send('El cliente de WhatsApp no está conectado');
+  }
 });
 
 module.exports = app;

@@ -2,6 +2,7 @@ const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 const app = express();
 const prisma = new PrismaClient();
+const usuarioSchema = require("../validations/usuarioSchema");
 
 app.get("/user", async (req, res) => {
   try {
@@ -15,12 +16,18 @@ app.get("/user", async (req, res) => {
 
 app.post("/user", async (req, res) => {
   try {
-    const newuser = await prisma.usuario.create({
+    const { error } = usuarioSchema.validate(req.body);
+    if (error) {
+      return res
+        .status(400)
+        .json({ error: error.details.map((err) => err.message) });
+    }
+    const newUsuario = await prisma.usuario.create({
       data: req.body,
     });
     res.json({
-      message: "sucessully create",
-      data: newuser,
+      message: "Usuario creado exitosamente",
+      data: newUsuario,
     });
   } catch (error) {
     res.status(500).json({
