@@ -3,12 +3,10 @@ const bodyParser = require("body-parser");
 const { Twilio } = require("twilio");
 const nodemailer = require("nodemailer");
 
-// const clientqr = require("./clientqr");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Configura Twilio
 const twilioClient = new Twilio(
   "ACb370777152d53ac0a07c878fc889a9a5",
   "ba1fa45843855fb22c11c73e5d9b4c1f"

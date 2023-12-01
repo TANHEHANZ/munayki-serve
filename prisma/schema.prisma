@@ -24,7 +24,7 @@ model Usuario {
   apellido              String
   edad                  Int
   telefono              Int
-  correo                String                  @unique 
+  correo                String                  @unique
   password              String
   rol                   String
   genero                String
@@ -86,5 +86,6 @@ model informacion {
   titulo String
   cuerpo String
   url    String?
+  imagen String?
   estado String? @default("false")
 }
